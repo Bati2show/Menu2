@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+         #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        /* Optional: Adjust the size and position of other elements accordingly */
+        header {
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-container {
+            position: relative;
+            z-index: 1;
+            /* Add any necessary adjustments */
+        }
+
+        p {
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+        }
+        h2 {
+            text-align: center;
+            color: black;
+
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #FDFFC2;
+        }
+
+        header {
+            background-color: #FF76CE;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .menu-container {
+            width: 80%;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+
+        .menu-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            padding: 20px;
+            background-color: #FDFFC2;
+            border: 1px solid white;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .menu-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 25px; /* Increase padding for a larger button */
+            font-size: 25px
+            background-color: #FF8C32 !important;
+            border-radius: 8px;
+            color: white;
+        }
+
+        /* Grill Animation */
+        .grill-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+        }
+
+        .grill {
+            position: absolute;
+            top: 0;
+            left: 60px;
+            width: 100%;
+            height: 100%;
+            background-color: #;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+        }
+
+
+
+        /* Navigation Dots */
+        .navigation-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #555;
+        }
+
+    </style>
+    <title>Menú de Restaurante</title>
+</head>
+<body>
+
+
+    <header>
+        <h1>Menú</h1>
+    </header>
+
+    <br>
+
+
+
+
+
+    <br><br><br><br>
+    <h1></h1>
+    <h2>Disfruta de todo lo que tenemos preparado para ti</h2>
+
+    <div class="menu-container">
+        <div class="menu-slider" id="menuSlider">
+            <!-- Item 1 -->
+            <div class="menu-item" id="item1">
+                <img src="1.jpeg" alt="Item 1 Image">
+                <h2></h2>
+                <p></p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-item" id="item2">
+                <img src="2.jpeg" alt="Item 2 Image">
+                <h2></h2>
+                <p></p>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-item" id="item3">
+                <img src="3.jpeg" alt="Item 3 Image">
+                <h2></h2>
+                <p></p>
+            </div>
+
+
+
+        </div>
+        <div class="navigation">
+            <button onclick="prevItem()" style="background-color: #FF76CE;">Anterior</button>
+            <button onclick="nextItem()" style="background-color: #FF76CE;">Siguiente</button>
+        </div>
+        <div class="navigation-dots" id="navigationDots">
+
+            <span class="dot" onclick="showItem(0)"></span>
+            <span class="dot" onclick="showItem(1)"></span>
+            <span class="dot" onclick="showItem(2)"></span>
+
+
+
+
+        <!--</div><br><br>
+        <div style="text-align: center; margin-bottom: 50px;">
+        <a href="https://api.whatsapp.com/send?phone=4871134391" target="_blank">
+            <button style="padding: 15px 30px; font-size: 20px; background-color: #25D366; border-radius: 8px; color: white;">Ordena aqui</button>
+        </a>-->
+    </div>
+    </div>
+    <script>
+        let currentIndex = 0;
+
+        function showItem(index) {
+            const menuSlider = document.getElementById('menuSlider');
+            const itemWidth = document.getElementById('item1').offsetWidth;
+            const newPosition = -index * itemWidth;
+            menuSlider.style.transform = `translateX(${newPosition}px)`;
+            currentIndex = index;
+
+            // Update the active dot
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, dotIndex) => {
+                dot.classList.toggle('active', dotIndex === index);
+            });
+        }
+
+        function prevItem() {
+            if (currentIndex > 0) {
+                showItem(currentIndex - 1);
+            }
+        }
+
+        function nextItem() {
+            const totalItems = document.querySelectorAll('.menu-item').length;
+            if (currentIndex < totalItems - 1) {
+                showItem(currentIndex + 1);
+            }
+        }
+    </script>
+</body>
+</html>
